@@ -1,0 +1,17 @@
+.container-background{
+    background-color: aliceblue;
+}
+.applyButton{
+    border-radius: 12px;
+    color:white;
+    background-color: rgb(213, 98, 98);
+}
+.applyButton:hover{
+    background-color: rgb(215, 16, 16);
+}
+.cardtext2{
+    opacity: 60%;
+    font-style: oblique;
+    
+    
+}

@@ -1,0 +1,71 @@
+/* background.css */
+
+/* Center container styles */
+.center-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0; /* Light grey background */
+  }
+  
+  /* Form container styles */
+  .form-container {
+    background-color: #fff; /* White background for the form */
+    padding: 20px; /* Padding inside the form */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
+    text-align: center; /* Center align text inside the form */
+    max-width: 400px; /* Limit form width */
+    width: 90%; /* Take up 90% of available width */
+    margin: 0 auto; /* Center align horizontally */
+  }
+  
+  /* Heading styles */
+  .form-container h1 {
+    margin-bottom: 20px; /* Space below the heading */
+  }
+  
+  /* Paragraph styles */
+  .form-container p {
+    opacity: 0.6; /* Adjusted opacity for text */
+  }
+  
+  /* Input field styles */
+  .form-container input[type="text"] {
+    width: 100%; /* Full width input */
+    padding: 10px; /* Padding inside the input */
+    margin-bottom: 20px; /* Space below the input */
+    border: 1px solid #ccc; /* Light grey border */
+    border-radius: 5px; /* Slightly rounded corners */
+  }
+  
+  /* Submit button styles */
+  .form-container button[type="submit"] {
+    padding: 10px 20px; /* Padding inside the button */
+    background-color: #b32d2d; /* Red background */
+    color: white; /* White text */
+    border: none; /* No border */
+    border-radius: 5px; /* Slightly rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+  }
+  
+  .form-container button[type="submit"]:hover {
+    background-color: black; /* Darker background on hover */
+  }
+  
+  /* Media queries for responsiveness */
+  @media only screen and (max-width: 768px) {
+    .form-container {
+      padding: 10px; /* Adjusted padding for smaller screens */
+    }
+  }
+  
+  @media only screen and (max-width: 480px) {
+    .form-container {
+      width: 100%; /* Full width on smaller screens */
+      border-radius: 0; /* No border radius on smaller screens */
+      box-shadow: none; /* No shadow on smaller screens */
+    }
+  }
+  

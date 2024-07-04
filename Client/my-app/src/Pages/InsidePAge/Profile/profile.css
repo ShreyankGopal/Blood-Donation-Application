@@ -1,0 +1,45 @@
+.profile-container {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: row;
+    padding: 0px;
+    height: 100vh;
+    opacity: 100%;
+    background-color: aliceblue;
+}
+
+.profile-image {
+    align-items: center;
+    display : flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    margin-right: 20px;
+}
+
+.profile-image img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    padding-left:5px;
+    
+}
+
+.vertical-line {
+    width: 2px;
+    height: 100%;
+    background-color: black;
+    
+    margin-right: 20px;
+    margin-bottom: 20px;
+   
+    
+}
+
+.profile-details {
+    flex-grow: 1;
+    text-align: left;
+}
+
+.profile-details p {
+    opacity: 60%;
+}

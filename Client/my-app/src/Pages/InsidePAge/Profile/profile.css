@@ -6,33 +6,36 @@
     height: 100vh;
     opacity: 100%;
     background-color: aliceblue;
+    position: relative; /* Add this to position the plus button relative to the container */
 }
 
 .profile-image {
     align-items: center;
-    display : flex;
+    display: flex;
     flex-direction: column;
     flex-shrink: 0;
     margin-right: 20px;
+    position: relative; /* Add this to position the plus button relative to the profile image */
 }
 
 .profile-image img {
     width: 150px;
     height: 150px;
     border-radius: 50%;
-    padding-left:5px;
-    
+    padding-left: 5px;
+    position: relative;
+}
+
+.profile-image a {
+    margin-top: 10px;
 }
 
 .vertical-line {
     width: 2px;
     height: 100%;
     background-color: black;
-    
     margin-right: 20px;
     margin-bottom: 20px;
-   
-    
 }
 
 .profile-details {
@@ -42,4 +45,30 @@
 
 .profile-details p {
     opacity: 60%;
+}
+
+.profile-details p span {
+    opacity: 90%;
+    font-weight: bolder;
+}
+
+.plus-button {
+    position: absolute;
+    bottom: -10px; /* Adjust to position correctly */
+    right: -10px;  /* Adjust to position correctly */
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 20px;
+    transform: translate(50%, 50%); /* Adjust to overlap the image */
+}
+.plus-button:hover {
+    background-color: #0056b3;
 }

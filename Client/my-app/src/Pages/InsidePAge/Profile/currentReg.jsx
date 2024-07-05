@@ -2,7 +2,10 @@ import React from "react";
 import { useEffect,useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import './currentReg.css'
 function CurrentReg(){
+    const navigate=useNavigate()
     const [fname, setFname] = useState();
     const [lname, setLname] = useState();
     const [phone, setPhone] = useState();
@@ -33,20 +36,23 @@ function CurrentReg(){
     },[])
     if(auth==0 && result){
         return(
-            
-            <div>
+            <div className="full-container">
+                <button className="back-button" onClick={() => navigate(`/userid/${id}/profile`)}>⬅️ profile</button>
+            <div className="user-details-container">
                 {result.map((item, index) => (
-                    <div key={index}>
-                        <p>First Name: {item.fname}</p>
-                        <p>Last Name: {item.lname}</p>
-                        <p>Phone: {item.phone}</p>
-                        <p>Email: {item.email}</p>
-                        <p>Pincode: {item.pincode}</p>
-                        <p>City: {item.city}</p>
-                        <p>Age: {item.age}</p>
-                        <p>Branch: {item.Name}</p>
+                    <div key={index} className="user-details-card">
+                        <p><span>First Name:</span> {item.fname}</p>
+                        <p><span>Last Name:</span> {item.lname}</p>
+                        <p><span>Phone:</span> {item.phone}</p>
+                        <p><span>Email:</span> {item.email}</p>
+                        <p><span>Pincode:</span> {item.pincode}</p>
+                        <p><span>City:</span> {item.city}</p>
+                        <p><span>Age:</span> {item.age}</p>
+                        <p><span>Branch:</span> {item.Name}</p>
+                        <img src={`https://api.qrserver.com/v1/create-qr-code/?data=branch:${item.Name} fname:${item.fname} lname:${item.lname} phone:${item.phone} email:${item.email} age:${item.age} branch:${item.branch}&amp;size=100x100`}/>
                     </div>
                 ))}
+            </div>
             </div>
         ) 
     }

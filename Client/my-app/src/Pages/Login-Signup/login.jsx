@@ -11,6 +11,7 @@ function Login(){
    const [password,setPassword]=useState('')
    function handleSubmit(e){
         e.preventDefault();
+        console.log("hi")
         const form={
             "email":email,
             "password":password

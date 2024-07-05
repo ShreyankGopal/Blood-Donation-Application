@@ -23,7 +23,7 @@ import currentReg from "./controller/currentReg.js";
 dotenv.config();
 
 const app=express()
-app.use(cors({credentials: true, origin: 'http://localhost:3001'}));
+app.use(cors({credentials: true, origin: 'http://localhost:3000'}));
 app.use(cookieParser())
 var transport= {
   host: 'smtp.gmail.com',

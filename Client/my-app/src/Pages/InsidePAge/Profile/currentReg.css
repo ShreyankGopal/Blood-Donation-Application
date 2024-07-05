@@ -1,0 +1,52 @@
+.full-container{
+    background-color: rgb(190, 46, 14);
+}
+.user-details-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.user-details-card {
+    text-align: center;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    width: 80%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.user-details-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 8px 8px 8px rgba(0, 0, 0, 0.2);
+}
+
+.user-details-card p {
+    margin: 10px 0;
+    font-size: 16px;
+    color: #333;
+}
+
+.user-details-card p span {
+    font-weight: bold;
+    color: #555;
+}
+.back-button {
+    display: inline-block;
+    margin: 20px;
+    padding: 10px 20px;
+    background-color: #b32d2d;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.back-button:hover {
+    background-color: black;
+}

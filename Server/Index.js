@@ -19,7 +19,8 @@ import apply from "./controller/ApplyDonor.js";
 import nodemailer from 'nodemailer'
 import sendOTP from "./OTP/sendOTP.js";
 import currentReg from "./controller/currentReg.js";
-
+import searchBank from "./controller/searchBanks.js";
+import searchResult from "./Arrays/searchResult.js";
 dotenv.config();
 
 const app=express()
@@ -68,7 +69,6 @@ app.use((err, req, res, next) => {
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json())
 
-
 const upload=multer({dest:"./uploads/"});
 const port=5001;
 var router=express.Router()
@@ -90,6 +90,7 @@ app.get("/userid/:id/home", authenticateToken, (req, res) => {
         res.send("-1");
     }
 });
+app.use('/',searchBank);
 app.use("/",profile)
 app.use('/',applicationRoute)
 app.post('/sendApplicationEmail',async(req,res)=>{

@@ -1,7 +1,8 @@
 .navbar {
     width: 100%;
     background-color: #b32d2d;
-    overflow: auto;
+    z-index: 1;
+
   }
   
   /* Navbar links */
@@ -35,4 +36,18 @@
     padding-top: 1%;
     padding-right: 5%;
     text-size-adjust:inherit;
+  }
+
+  #search-cards{
+    position: absolute;
+    z-index: 1;
+    overflow: auto;
+  }
+  #search-cards a{
+    position: relative;
+    color: #000;
+  }
+  #search-cards a:hover{
+    color: black;
+    background-color: white;
   }

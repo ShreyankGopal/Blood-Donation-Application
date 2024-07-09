@@ -4,10 +4,11 @@ import React from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import './profile.css';
 import TopNav from "../topNav";
+import { Link } from "react-router-dom";
 
 function Profile() {
     const { id } = useParams();
-    const navigate = useNavigate(); // Hook for navigation
+    const navigate = useNavigate();
     const [fname, setFname] = useState();
     const [lname, setLname] = useState();
     const [phone, setPhone] = useState();
@@ -23,7 +24,7 @@ function Profile() {
         })
             .then((response) => {
                 console.log(response.data);
-                if (response.data == "-1") {
+                if (response.data === "-1") {
                     setAuth(-1);
                 } else {
                     setCity(response.data.city);
@@ -43,25 +44,23 @@ function Profile() {
     }, [id]);
 
     const handlePlusClick = () => {
-        navigate('/update-profile-picture'); // Navigate to the update profile picture page
+        navigate('/update-profile-picture');
     };
 
-    if (auth == 0) {
+    if (auth === 0) {
         return (
             <div>
                 <TopNav />
                 <div className="profile-container">
                     <div className="profile-image">
-                        <div>
+                        <div style={{ position: 'relative' }}>
                             <img src="https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg" alt="Profile" />
                             <button className="plus-button" onClick={handlePlusClick}>+</button>
                         </div>
-
-                        <a href="/currentReg">Current registration</a>
-                        <a href="/drives">Previous registrations</a>
-                        <a href="/drives">Your drives</a>
-                        <a href="/drives">Your drives</a>
-                        
+                        <Link to="/currentReg" className="plain-text-link">Current registration</Link>
+                        <Link to="/drives" className="plain-text-link">Previous registrations</Link>
+                        <Link to="/your-drives" className="plain-text-link">Your drives</Link>
+                        <Link to="/your-drives" className="plain-text-link">Your drives</Link>
                     </div>
                     <div className="vertical-line"></div>
                     <div className="profile-details">

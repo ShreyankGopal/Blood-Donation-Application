@@ -6,7 +6,7 @@
     height: 100vh;
     opacity: 100%;
     background-color: aliceblue;
-    position: relative; /* Add this to position the plus button relative to the container */
+    position: relative;
 }
 
 .profile-image {
@@ -15,7 +15,7 @@
     flex-direction: column;
     flex-shrink: 0;
     margin-right: 20px;
-    position: relative; /* Add this to position the plus button relative to the profile image */
+    position: relative;
 }
 
 .profile-image img {
@@ -26,8 +26,41 @@
     position: relative;
 }
 
-.profile-image a {
-    margin-top: 10px;
+.plus-button {
+    position: absolute;
+    bottom: 30px; /* Position it at the bottom */
+    right: 25px;  /* Position it at the right */
+    transform: translate(50%, 50%); /* Adjust to overlap the image */
+    background-color: #b32d2d;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.plus-button:hover {
+    background-color:grey;
+}
+
+.plain-text-link {
+    color: black; /* Inherit color from parent, effectively making it look like normal text */
+    text-decoration: none; /* Remove underline */
+    opacity: 80%; 
+    margin-top: 10px; /* Spacing between links */
+}
+
+.plain-text-link:hover {
+    transform: translate(-2px);
+    font-size: large;
+    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    color: black;
+    opacity: 100%;
 }
 
 .vertical-line {
@@ -50,25 +83,4 @@
 .profile-details p span {
     opacity: 90%;
     font-weight: bolder;
-}
-
-.plus-button {
-    position: absolute;
-    bottom: -10px; /* Adjust to position correctly */
-    right: -10px;  /* Adjust to position correctly */
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 50%;
-    width: 30px;
-    height: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    font-size: 20px;
-    transform: translate(50%, 50%); /* Adjust to overlap the image */
-}
-.plus-button:hover {
-    background-color: #0056b3;
 }

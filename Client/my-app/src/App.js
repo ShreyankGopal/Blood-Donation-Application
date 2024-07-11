@@ -11,10 +11,13 @@ import Profile from './Pages/InsidePAge/Profile/profile';
 import CurrentReg from './Pages/InsidePAge/Profile/currentReg';
 import ApplyDonor from './Pages/InsidePAge/ApplyDonor';
 import Application from './Pages/InsidePAge/Application';
+import { SearchProvider } from './Pages/Context/searchContext';
+import SearchedBank from './Pages/InsidePAge/searchedBank';
 function App() {
   return (
     
     <div className="loginSignup">
+      <SearchProvider>
       <Routes>
       <Route path="/" element={<Home />}/>
         <Route path="/login" element={<Login />}/>
@@ -25,7 +28,9 @@ function App() {
         <Route path="/userid/:id/apply" element={<ApplyDonor/>}/>
         <Route path="/userid/:id/apply/bankid/:bankid/application" element={<Application/>}/>
         <Route path="/userid/:id/currentReg" element={<CurrentReg />}/>
+        <Route path="/showBanks" element={<SearchedBank />}/>
       </Routes>
+      </SearchProvider>
   
     </div>
           

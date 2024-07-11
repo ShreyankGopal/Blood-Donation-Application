@@ -58,7 +58,7 @@ function Profile() {
                             <button className="plus-button" onClick={handlePlusClick}>+</button>
                         </div>
                         <Link to="/currentReg" className="plain-text-link">Current registration</Link>
-                        <Link to="/drives" className="plain-text-link">Previous registrations</Link>
+                        <Link to="/drives" className="plain-text-link">Prev registrations</Link>
                         <Link to="/your-drives" className="plain-text-link">Your drives</Link>
                         <Link to="/your-drives" className="plain-text-link">Your drives</Link>
                     </div>

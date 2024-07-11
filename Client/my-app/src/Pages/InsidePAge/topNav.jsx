@@ -1,48 +1,60 @@
-import React from "react";
+import React, { useContext } from "react";
 import './css/topNav.css'
 import NavBar from "./sidNavBar";
 import { useEffect } from "react";
 import { useState } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
-
+import { useDetectClickOutside } from 'react-detect-click-outside'
+import { SearchContext } from "../Context/searchContext";
+import { Navigate } from "react-router-dom";
 function TopNav(){
 const {id}=useParams()
 const [authenticated,setAuth]=useState(-1);
 const [search,setSearch]=useState('')
 const [results,setResult]=useState([])
+const [displayDropdown, setDisplayDropdown] = useState(false);
+const {searchResult, setSearchResult } = useContext(SearchContext);
+const navigate=useNavigate()
+const closeDropdown = () => {
+  setDisplayDropdown(false);
+}
+const ref = useDetectClickOutside({ onTriggered: closeDropdown });
+
 function handlClick(id){
-  axios.post('http://localhost:5001/applySearchBank',{id:id},{
-    withCredentials:true
-  })
-  .then((response)=>{
-    console.log(response.data)
-    
-  })
-  .catch((error)=>{
-    console.log(error);
-  })
+  try {
+    setSearchResult(id);
+  } catch (error) {
+    console.log(error)
+  }
+  
+  
   
 }
 function handleSearchChange(e){
-  
+  console.log(displayDropdown)
+  setDisplayDropdown(true)
   setSearch(e.target.value);
+  console.log(search.length)
   if(search.length===0){
     
     setResult([])
   }
-  console.log(search.length)
-  axios.post('http://localhost:5001/searchBanks',{search:search},{
+  
+    axios.post('http://localhost:5001/searchBanks',{search:search},{
     withCredentials:true
-  })     
-  .then((response)=>{
-    console.log(response.data)
-    setResult(response.data);
-  })
-  .catch((error)=>{
-    console.log(error);
-  })
+    })     
+    .then((response)=>{
+      console.log(response.data)
+      setResult(response.data);
+    })
+    .catch((error)=>{
+      console.log(error);
+    })
+  
+  
+  
 }
 function handlLogoutClick(){
   //console.log("logout")
@@ -91,10 +103,10 @@ useEffect(()=>{
                 
                 <a href="#"><i className="fa fa-fw fa-envelope"></i> Contact</a>
                 <div>
-                  <input  className="search" type="text" placeholder="Search centers" value={search} onChange={(e)=>handleSearchChange(e)} />
+                  <input  className="search" type="text" placeholder="Search centers" value={search} onChange={(e)=>handleSearchChange(e)} onClick={()=>setDisplayDropdown(true)} />
                 
-                  {results.length > 0 && (
-                    <div  id="search-cards" className="card"  style={{ width: '16rem' }}>
+                  {results.length > 0 && displayDropdown && (
+                    <div  id="search-cards" className="card"  style={{ width: '16rem' }} ref={ref}>
               
                       
                       {results.map((result, index) => (

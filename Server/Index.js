@@ -21,6 +21,7 @@ import sendOTP from "./OTP/sendOTP.js";
 import currentReg from "./controller/currentReg.js";
 import searchBank from "./controller/searchBanks.js";
 import searchResult from "./Arrays/searchResult.js";
+import searchedBank from "./controller/searchedBank.js";
 dotenv.config();
 
 const app=express()
@@ -126,6 +127,7 @@ app.post('/sendApplicationEmail',async(req,res)=>{
     }
 })
 app.use('/',currentReg);
+app.use('/',searchedBank)
 app.post("/send_otp",async (req,res)=>{
     try { 
         const mobileNumber = req.body.phone;

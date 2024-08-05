@@ -39,15 +39,17 @@
   }
 
   #search-cards{
+    max-height: 7cm;
     position: absolute;
     z-index: 1;
     overflow: auto;
   }
   #search-cards a{
+    border-radius: 5px;
     position: relative;
     color: #000;
   }
   #search-cards a:hover{
     color: black;
-    background-color: white;
+    background-color: rgb(216, 249, 252);
   }

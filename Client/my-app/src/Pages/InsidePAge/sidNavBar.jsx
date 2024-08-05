@@ -16,9 +16,9 @@ function NavBar(props) {
         <div>
             <div id="mySidenav" className="sidenav" style={{ width: navWidth }}>
                 <a href="javascript:void(0)" className="closebtn" onClick={closeNav}>&times;</a>
-                <a href="/Drives">Launch drives</a>
-                <a href="#">Find drives</a>
-                <a href="apply">Apply as Donor</a>
+                <a href={`/userid/${props.id}/Drives`}>Launch drives</a>
+                <a href={`/userid/${props.id}/find-drives`}>Find drives</a>
+                <a href={`/userid/${props.id}/apply`}>Apply as Donor</a>
                 <a href="#">Contact</a>
             </div>
             <span style={{ fontSize: "30px", cursor: "pointer" }} onClick={openNav}>&#9776;</span>

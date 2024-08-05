@@ -4,15 +4,18 @@ import { useParams } from "react-router-dom";
 import TopNav from "./topNav";
 import axios from "axios";
 import './css/bloodBank.css'
+import api from "../../API/api";
 import Loader from "../Loader/loader";
 import { SearchContext } from "../Context/searchContext";
+
 function SearchedBank() {
   const [userLocation, setUserLocation] = useState(null);
   const [error, setError] = useState(null);
-  const { searchResult, setSearchResult } = useContext(SearchContext);
+  const { searchResult } = useContext(SearchContext);
   const [auth, setAuth] = useState(0);
   const [bloodBanks, setBloodBanks] = useState([]);
-
+  const {id,bid}=useParams();
+  console.log(searchResult)
   // Define the function that finds the user's geolocation
   const getUserLocation = async () => {
     // If geolocation is supported by the user's browser
@@ -49,9 +52,8 @@ function SearchedBank() {
 
   useEffect(() => {
     if (userLocation) {
-      axios.post(`http://localhost:5001/showBanks`, { id:searchResult, latitude: userLocation.latitude, longitude: userLocation.longitude }, {
-        withCredentials: true
-      })
+      console.log(bid);
+      api.post(`/${bid}/showbanks`, { id:bid, latitude: userLocation.latitude, longitude: userLocation.longitude })
         .then((response) => {
           console.log(response.data)
           if (response.data == "-1") {
@@ -66,19 +68,25 @@ function SearchedBank() {
           console.error('Error making post request:', error);
         });
     }
-  }, [userLocation, searchResult]);
+  });
 
   // Return an HTML page for the user to check their location
   if (auth == 0 ) {
     return (
       <div>
-        <TopNav />
+        <TopNav/>
+        {
+          bloodBanks.length==0 && (
+            <Loader/>
+          )
+        }
         <div className="container-background">
           {bloodBanks.map((bloodBank, index) => (
             <Cards
               distance={bloodBank.distance}
               key={index}
-              id={bloodBank.id}
+              bid={bloodBank.id}
+              id={bloodBank.userid}
               name={bloodBank.Name}
               address={bloodBank.address}
             />

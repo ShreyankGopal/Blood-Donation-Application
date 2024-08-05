@@ -5,7 +5,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import './profile.css';
 import TopNav from "../topNav";
 import { Link } from "react-router-dom";
-
+import api from "../../../API/api";
 function Profile() {
     const { id } = useParams();
     const navigate = useNavigate();
@@ -19,9 +19,7 @@ function Profile() {
     const [auth, setAuth] = useState(0);
 
     useEffect(() => {
-        axios.post(`http://localhost:5001/userid/${id}/profile`, { id: id }, {
-            withCredentials: true
-        })
+        api.post(`/userid/${id}/profile`, { id: id })
             .then((response) => {
                 console.log(response.data);
                 if (response.data === "-1") {
@@ -57,9 +55,9 @@ function Profile() {
                             <img src="https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg" alt="Profile" />
                             <button className="plus-button" onClick={handlePlusClick}>+</button>
                         </div>
-                        <Link to="/currentReg" className="plain-text-link">Current registration</Link>
+                        <Link to={`/userid/${id}/currentReg`} className="plain-text-link">Current registration</Link>
                         <Link to="/drives" className="plain-text-link">Prev registrations</Link>
-                        <Link to="/your-drives" className="plain-text-link">Your drives</Link>
+                        <Link to={`/userid/${id}/your-drives`} className="plain-text-link">Your drives</Link>
                         <Link to="/your-drives" className="plain-text-link">Your drives</Link>
                     </div>
                     <div className="vertical-line"></div>

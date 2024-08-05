@@ -9,22 +9,25 @@ import { Link } from "react-router-dom";
 import { useDetectClickOutside } from 'react-detect-click-outside'
 import { SearchContext } from "../Context/searchContext";
 import { Navigate } from "react-router-dom";
+import api from "../../API/api";
 function TopNav(){
+console.log(process.env.REACT_APP_API_URL)
 const {id}=useParams()
 const [authenticated,setAuth]=useState(-1);
 const [search,setSearch]=useState('')
 const [results,setResult]=useState([])
 const [displayDropdown, setDisplayDropdown] = useState(false);
-const {searchResult, setSearchResult } = useContext(SearchContext);
+const {setSearchResult } = useContext(SearchContext);
 const navigate=useNavigate()
 const closeDropdown = () => {
   setDisplayDropdown(false);
 }
 const ref = useDetectClickOutside({ onTriggered: closeDropdown });
 
-function handlClick(id){
+function handlClick(bid){
   try {
-    setSearchResult(id);
+    
+    navigate(`/userid/${id}/bankid/${bid}/showbanks`);
   } catch (error) {
     console.log(error)
   }
@@ -42,9 +45,7 @@ function handleSearchChange(e){
     setResult([])
   }
   
-    axios.post('http://localhost:5001/searchBanks',{search:search},{
-    withCredentials:true
-    })     
+    api.post('/searchBanks',{search:search})     
     .then((response)=>{
       console.log(response.data)
       setResult(response.data);
@@ -72,9 +73,7 @@ function handlLogoutClick(){
 useEffect(()=>{
   console.log('useEffect called');
     
-  axios.get(`http://localhost:5001/userid/${id}/home`,{
-    withCredentials:true
-  })
+  api.get(`/userid/${id}/home`)
   .then((response)=>{
     console.log(response.data)
     if(response.data=="0"){
@@ -99,7 +98,7 @@ useEffect(()=>{
             
             <div className="navbar">
                 <NavBar id={id}/>
-                <a className="active" href="#"><i className="fa fa-fw fa-home"></i> Home</a>
+                <a className="active" href={`/userid/${id}/home`}><i className="fa fa-fw fa-home"></i> Home</a>
                 
                 <a href="#"><i className="fa fa-fw fa-envelope"></i> Contact</a>
                 <div>
@@ -110,7 +109,8 @@ useEffect(()=>{
               
                       
                       {results.map((result, index) => (
-                        <a key="index" href="/showBanks" onClick={handlClick(result.id)}>{result.Name}</a>
+                        <a key="index"  onClick={()=>handlClick(result.id)}>{result.Name}</a>
+                        
                       ))}
                       
                     </div>
@@ -120,7 +120,7 @@ useEffect(()=>{
                 </div>
                 
                 
-                <a href="profile"><i className="fa fa-fw fa-user"></i> Profile</a>
+                <a href={`/userid/${id}/profile`}><i className="fa fa-fw fa-user"></i> Profile</a>
                 <a href="/" onClick={handlLogoutClick}><i className="fa fa-fw"  ></i> Logout</a>
                 
                 

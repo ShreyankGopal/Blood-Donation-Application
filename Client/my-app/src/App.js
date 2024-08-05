@@ -13,6 +13,8 @@ import ApplyDonor from './Pages/InsidePAge/ApplyDonor';
 import Application from './Pages/InsidePAge/Application';
 import { SearchProvider } from './Pages/Context/searchContext';
 import SearchedBank from './Pages/InsidePAge/searchedBank';
+import LaunchDrives from './Pages/InsidePAge/AplicationForDrives/LaunchDrives';
+import FindDrives from './Pages/FindDrives/findDrives';
 function App() {
   return (
     
@@ -28,7 +30,9 @@ function App() {
         <Route path="/userid/:id/apply" element={<ApplyDonor/>}/>
         <Route path="/userid/:id/apply/bankid/:bankid/application" element={<Application/>}/>
         <Route path="/userid/:id/currentReg" element={<CurrentReg />}/>
-        <Route path="/showBanks" element={<SearchedBank />}/>
+        <Route path="/userid/:id/bankid/:bid/showbanks" element={<SearchedBank />}/>
+        <Route path="/userid/:id/Drives" element={<LaunchDrives/>}/>
+        <Route path="/userid/:id/find-drives" element={<FindDrives/>}/>
       </Routes>
       </SearchProvider>
   

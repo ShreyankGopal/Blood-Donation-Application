@@ -4,6 +4,7 @@ import cors from "cors"
 import util from 'util';
 import promisify from "util.promisify";
 //import { Router } from "express";
+import drives from "./controller/drives.js";
 import axios from 'axios'
 import applicationRoute from "./controller/applicationRoute.js";
 import multer from "multer";
@@ -22,6 +23,7 @@ import currentReg from "./controller/currentReg.js";
 import searchBank from "./controller/searchBanks.js";
 import searchResult from "./Arrays/searchResult.js";
 import searchedBank from "./controller/searchedBank.js";
+import banksToDonate from "./controller/banksToDonate.js";
 dotenv.config();
 
 const app=express()
@@ -79,10 +81,11 @@ app.post("/logout",(req,res)=>{
     res.clearCookie('authToken',{path:'/'})
     res.send("logged out")
 })
+app.use('/',banksToDonate);
 app.get("/userid/:id/home", authenticateToken, (req, res) => {
     const id=req.params.id;
     console.log(id)
-    if (req.user && (req.user.userid==id)) {
+    if (req.user) {
         console.log("u r in ");
         console.log(req.user.userEmail);
         res.send("0");
@@ -148,6 +151,7 @@ app.post("/send_otp",async (req,res)=>{
     }
 })
 app.use("/",apply)
+app.use('/',drives);
 app.use('/',sendOTP)
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);

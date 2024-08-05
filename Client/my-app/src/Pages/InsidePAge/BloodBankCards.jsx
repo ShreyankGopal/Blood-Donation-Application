@@ -8,7 +8,7 @@ function Cards(props){
   const navigate=useNavigate()
   function handleClick(event){
     
-    navigate(`bankid/${props.id}/application`);
+    navigate(`/userid/${props.id}/apply/bankid/${props.bid}/application`);
   }
     return(
     <div className="card mb-3">

@@ -4,7 +4,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import ReactDOMServer from 'react-dom/server';
 import './css/application.css';
-
+import api from "../../API/api";
 import MyEmail from './Email';
 
 function Application() {
@@ -27,7 +27,7 @@ function Application() {
         const messageHtml = ReactDOMServer.renderToStaticMarkup(
             <MyEmail fname={fname} lname={lname} branch={branch}></MyEmail>
         );
-        axios.post("http://localhost:5001/sendApplicationEmail", { messageHtml: messageHtml,email:email ,id:id,bankid:bankid})
+        api.post("/sendApplicationEmail", { messageHtml: messageHtml,email:email ,id:id,bankid:bankid})
             .then((response) => {
                 console.log(response);
             })

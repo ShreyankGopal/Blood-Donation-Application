@@ -5,6 +5,7 @@ import TopNav from "./topNav";
 import axios from "axios";
 import './css/bloodBank.css'
 import Loader from "../Loader/loader";
+import api from "../../API/api";
 function ApplyDonor() {
   const [userLocation, setUserLocation] = useState(null);
   const [error, setError] = useState(null);
@@ -30,7 +31,9 @@ function ApplyDonor() {
         setUserLocation({ latitude, longitude });
         setError(null); // Clear any previous errors
       } catch (error) {
-        setAuth(-1);
+        const latitude=0.000000;
+        const longitude=0.000000;
+        setUserLocation({ latitude, longitude });
         console.error('Error getting user location:', error);
         setError('Error getting user location. Please try again.');
       }
@@ -48,9 +51,7 @@ function ApplyDonor() {
 
   useEffect(() => {
     if (userLocation) {
-      axios.post(`http://localhost:5001/userid/${id}/apply`, { id: id, latitude: userLocation.latitude, longitude: userLocation.longitude }, {
-        withCredentials: true
-      })
+      api.post(`/userid/${id}/apply`, { id: id, latitude: userLocation.latitude, longitude: userLocation.longitude })
         .then((response) => {
           console.log(response.data)
           if (response.data == "-1") {
@@ -70,14 +71,21 @@ function ApplyDonor() {
   // Return an HTML page for the user to check their location
   if (auth == 0 ) {
     return (
+     
       <div>
+        {
+          bloodBanks.length==0 && (
+            <Loader/>
+          )
+        }
         <TopNav />
         <div className="container-background">
           {bloodBanks.map((bloodBank, index) => (
             <Cards
               distance={bloodBank.distance}
               key={index}
-              id={bloodBank.id}
+              id={id}
+              bid={bloodBank.id}
               name={bloodBank.Name}
               address={bloodBank.address}
             />

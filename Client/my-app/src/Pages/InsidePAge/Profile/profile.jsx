@@ -52,8 +52,8 @@ function Profile() {
                 <div className="profile-container">
                     <div className="profile-image">
                         <div style={{ position: 'relative' }}>
-                            <img src="https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg" alt="Profile" />
-                            <button className="plus-button" onClick={handlePlusClick}>+</button>
+                        <img src={`${process.env.PUBLIC_URL}/images/anchor2.png`}></img>
+                            
                         </div>
                         <Link to={`/userid/${id}/currentReg`} className="plain-text-link">Current registration</Link>
                         <Link to="/drives" className="plain-text-link">Prev registrations</Link>
@@ -68,6 +68,10 @@ function Profile() {
                         <p><span>City: </span>{city}</p>
                         <p><span>Pincode: </span>{pincode}</p>
                         <p><span>Age: </span>{age}</p>
+                    </div>
+                    <div className="picture">
+                        <h3>You are a volunteer </h3>
+                        <img src={`${process.env.PUBLIC_URL}/images/anchor2.png`}></img>
                     </div>
                 </div>
             </div>

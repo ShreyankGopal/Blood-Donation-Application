@@ -19,8 +19,8 @@
 }
 
 .profile-image img {
-    width: 150px;
-    height: 150px;
+    width: 200px;
+    height: 200px;
     border-radius: 50%;
     padding-left: 5px;
     position: relative;
@@ -83,4 +83,19 @@
 .profile-details p span {
     opacity: 90%;
     font-weight: bolder;
+}
+.picture {
+    width: 50%; /* Adjust the width as needed */
+    height: auto; /* Let the height adjust proportionally */
+}
+
+.picture img {
+    width: 50%; /* Make the image take the full width of the container */
+    height: auto; /* Maintain the aspect ratio */
+    border-radius: 8px; /* Optional: adjust the border radius */
+}
+.picture h3{
+    display: flex;
+    padding-top: 20%;
+    z-index: 1;
 }

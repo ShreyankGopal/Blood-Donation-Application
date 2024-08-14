@@ -7,6 +7,38 @@ drives.post('/regDrive', authenticateToken, async (req, res) => {
     const {  title, description, bloodGroup, bank } = req.body;
     const db = req.db;
     const query = req.query;
+    async function sendDriveEmail(userId, driveId) {
+        try {
+            const users = await query('SELECT email, fname FROM users WHERE id != ?', [userId]);
+
+            const transporter = req.transporter; // Assuming transporter is initialized in middleware or app level
+            console.log(users.length)
+            users.forEach(user => {
+                const mailOptions = {
+                    from: 'shreyank@example.com',
+                    to: user.email,
+                    subject: 'New Blood Donation Drive Launched',
+                    html: `<p>Hello ${user.fname},</p>
+                           <p>Someone has launched a drive and is in need of blood. Please check it out.</p>
+                           <p>Title: ${title}</p>
+                           <p>Description: ${description}</p>
+                           <p>Blood Group: ${bloodGroup}</p>
+                           <p>Bank: ${bank}</p>`
+                           
+                };
+
+                transporter.sendMail(mailOptions, (err, info) => {
+                    if (err) {
+                        console.error('Error sending email to', user.email, ':', err);
+                    } else {
+                        console.log('Email sent to', user.email, ':', info.response);
+                    }
+                });
+            });
+        } catch (error) {
+            console.error('Failed to send registration emails:', error);
+        }
+    }
     try {
         if (req.user) {
             // Start a transaction
@@ -31,7 +63,8 @@ drives.post('/regDrive', authenticateToken, async (req, res) => {
 
             // Commit the transaction
             await query('COMMIT');
-
+            // send a mail to all other users with pushnotif on here showing the drive has been registered 
+            sendDriveEmail(userId,driveId);
             res.status(201).json({ message: 'Drive registered successfully', driveId });
         }
 

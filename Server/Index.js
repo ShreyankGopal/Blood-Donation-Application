@@ -24,6 +24,7 @@ import searchBank from "./controller/searchBanks.js";
 import searchResult from "./Arrays/searchResult.js";
 import searchedBank from "./controller/searchedBank.js";
 import banksToDonate from "./controller/banksToDonate.js";
+import findDrives from "./controller/findDrives.js";
 dotenv.config();
 
 const app=express()
@@ -153,6 +154,7 @@ app.post("/send_otp",async (req,res)=>{
 app.use("/",apply)
 app.use('/',drives);
 app.use('/',sendOTP)
+app.use('/',findDrives);
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);
 });

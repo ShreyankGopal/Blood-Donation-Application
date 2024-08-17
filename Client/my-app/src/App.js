@@ -16,6 +16,7 @@ import SearchedBank from './Pages/InsidePAge/searchedBank';
 import LaunchDrives from './Pages/InsidePAge/AplicationForDrives/LaunchDrives';
 import FindDrives from './Pages/FindDrives/findDrives';
 import YourDrives from './Pages/InsidePAge/Profile/YourDrives';
+import DriveDetail from './Pages/FindDrives/findDriveDetail';
 function App() {
   return (
     
@@ -34,6 +35,8 @@ function App() {
         <Route path="/userid/:id/bankid/:bid/showbanks" element={<SearchedBank />}/>
         <Route path="/userid/:id/Drives" element={<LaunchDrives/>}/>
         <Route path="/userid/:id/find-drives" element={<FindDrives/>}/>
+        <Route path="/userid/:id/your-drives" element={<YourDrives/>}/>
+        <Route path="/full-drive-details/:id" element={<DriveDetail/>}/>
       </Routes>
       </SearchProvider>
   

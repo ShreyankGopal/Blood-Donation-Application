@@ -10,7 +10,7 @@
 }
 
 .user-details-card {
-    text-align: center;
+    text-align: left;
     background-color: #f9f9f9;
     border: 1px solid #ddd;
     border-radius: 10px;
@@ -49,4 +49,9 @@
 
 .back-button:hover {
     background-color: black;
+}
+.date{
+    opacity:60%;
+    font:italic;
+    font-size: small;
 }

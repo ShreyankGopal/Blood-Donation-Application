@@ -1,42 +1,66 @@
-import React from "react";
-import { useEffect,useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import api from "../../../API/api";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-function YourDrives(){
-    const navigate=useNavigate();
-    const {response,setResponse}=useState();
-    const {auth,setAuth}=useState(-1);
-    const {id}=useParams();
-    api.get('/getYourDrives')
-    .then((response)=>{
-        setResponse(response.data);
+import './currentReg.css'
 
-    })
-    .catch((error)=>{
-        console.log(error);
-        setAuth(0);
-    })
-    return(
+function YourDrives() {
+    const navigate = useNavigate();
+    const { id } = useParams();
+    const [response, setResponse] = useState([]);
+    const [auth, setAuth] = useState(-1);
+
+    useEffect(() => {
+        api.get('/getYourDrives')
+            .then((response) => {
+                setResponse(response.data);
+                setAuth(1); // Set auth to 1 if authorized
+            })
+            .catch((error) => {
+                console.log(error);
+                setAuth(0); // Set auth to 0 if unauthorized
+            });
+    }, []);
+
+    if (auth === 0) {
+        return <h4>You are not authorized</h4>;
+    }
+
+    if (response.length === 0) {
+        return <h4>You have launched no drives</h4>;
+    }
+
+    return (
         <div className="full-container">
-            <button className="back-button" onClick={() => navigate(`/userid/${id}/profile`)}>⬅️ profile</button>
+            <button className="back-button" onClick={() => navigate(`/userid/${id}/profile`)}>⬅️ Profile</button>
             <div className="user-details-container">
-                {response.map((item, index) => (
-                    <div key={index} className="user-details-card">
-                        <p><span>First Name:</span></p>
-                        <p><span>Last Name:</span></p>
-                        <p><span>Phone:</span></p>
-                        <p><span>Email:</span></p>
-                        <p><span>Pincode:</span></p>
-                        <p><span>City:</span></p>
-                        <p><span>Age:</span></p>
-                        <p><span>Branch:</span></p>
-                        <img src={`https://api.qrserver.com/v1/create-qr-code/?data=branch:${item.Name} fname:${item.fname} lname:${item.lname} phone:${item.phone} email:${item.email} age:${item.age} branch:${item.branch}&amp;size=100x100`}/>
+                {response.map((item, index,arr) => {
+                    const reversedIndex=arr.length-1-index;
+                    const reversedArrayElement=arr[reversedIndex];
+                    var date;
+                    if(reversedArrayElement.Date!=null){
+                        date=reversedArrayElement.Date.split('T')[0];
+                    }
+                    else{
+                        date=-1;
+                    }
+                    return(
+                    <div key={reversedIndex} className="user-details-card">
+                        <h2> {reversedArrayElement.Title}</h2>
+                        <h4><span>Blood Group:</span> {reversedArrayElement.bloodGroup}</h4>
+                        <h4><span>Bank:</span> {reversedArrayElement.bank}</h4>
+                        <p><span>Description:</span> {reversedArrayElement.purpose}</p>
+                        <p className="date">{date}</p>
+                        
+
+                        
                     </div>
-                ))}
+                )
+                })}
             </div>
         </div>
-    )
+    );
 }
+
 export default YourDrives;

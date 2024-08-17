@@ -63,16 +63,13 @@ function Profile() {
                     <div className="vertical-line"></div>
                     <div className="profile-details">
                         <h2>{fname} {lname}</h2>
-                        <p><span>Email: </span> {email}</p>
-                        <p><span>Phone: </span>{phone}</p>
-                        <p><span>City: </span>{city}</p>
-                        <p><span>Pincode: </span>{pincode}</p>
-                        <p><span>Age: </span>{age}</p>
+                        <p>{email}</p>
+                        <p>{phone}</p>
+                        <p>{city}</p>
+                        <p>{pincode}</p>
+                        <p>{age}</p>
                     </div>
-                    <div className="picture">
-                        <h3>You are a volunteer </h3>
-                        <img src={`${process.env.PUBLIC_URL}/images/anchor2.png`}></img>
-                    </div>
+                   
                 </div>
             </div>
         );

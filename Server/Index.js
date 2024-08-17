@@ -25,6 +25,8 @@ import searchResult from "./Arrays/searchResult.js";
 import searchedBank from "./controller/searchedBank.js";
 import banksToDonate from "./controller/banksToDonate.js";
 import findDrives from "./controller/findDrives.js";
+import yourDrives from "./controller/getYourDrives.js";
+import driveDetails from "./controller/fullFriveDetail.js";
 dotenv.config();
 
 const app=express()
@@ -78,10 +80,12 @@ const port=5001;
 var router=express.Router()
 app.use("/",signuprouter)
 app.use("/",login)
+app.use('/',driveDetails);
 app.post("/logout",(req,res)=>{
     res.clearCookie('authToken',{path:'/'})
     res.send("logged out")
 })
+app.use('/',yourDrives);
 app.use('/',banksToDonate);
 app.get("/userid/:id/home", authenticateToken, (req, res) => {
     const id=req.params.id;

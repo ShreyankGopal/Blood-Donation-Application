@@ -10,7 +10,7 @@ findDrives.get('/find-drives', async (req, res) => {
     try {
       
             const driveResult = await query('SELECT * FROM Drives');
-
+            
             res.status(200).json(driveResult);
         
     } catch (error) {

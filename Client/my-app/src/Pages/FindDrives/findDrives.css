@@ -4,6 +4,10 @@
     max-height: calc(100vh - 80px); /* Adjust as needed to fit your layout */
     padding: 20px;
 }
+a {
+    text-decoration: none; /* Removes the underline */
+    color: inherit;        /* Inherits the color from the parent element */
+}
 
 .applyButton {
     border-radius: 12px;
@@ -31,4 +35,9 @@
 .card:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+.card-text-date{
+    opacity : 60%;
+    font-size: small;
+    font:italic;
 }

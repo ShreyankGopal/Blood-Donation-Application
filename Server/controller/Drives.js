@@ -13,6 +13,7 @@ drives.post('/regDrive', authenticateToken, async (req, res) => {
 
             const transporter = req.transporter; // Assuming transporter is initialized in middleware or app level
             console.log(users.length)
+
             users.forEach(user => {
                 const mailOptions = {
                     from: 'shreyank@example.com',
@@ -44,11 +45,12 @@ drives.post('/regDrive', authenticateToken, async (req, res) => {
             // Start a transaction
             const userId=req.user.userid;
             await query('START TRANSACTION');
-
+            const date = new Date();
+            const formattedDate = date.toISOString().split('T')[0];
             // Insert into Drives table
             await query(
-                'INSERT INTO Drives (title, purpose, bloodGroup, bank) VALUES (?, ?, ?, ?)',
-                [title, description, bloodGroup, bank]
+                'INSERT INTO Drives (title, purpose, bloodGroup, bank, Date) VALUES (?, ?, ?, ?,?)',
+                [title, description, bloodGroup, bank,formattedDate]
             );
 
             // Retrieve the last inserted drive ID

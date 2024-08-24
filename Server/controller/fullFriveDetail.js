@@ -1,7 +1,7 @@
 import express from 'express';
 import authenticateToken from '../middlewares/tokenAuth.js';
 const driveDetails = express.Router();
-driveDetails.get('/getYourDrives/:id',authenticateToken,async (req,res)=>{
+driveDetails.get('/getDriveDetail/:id',authenticateToken,async (req,res)=>{
     const {id}=req.params;
     const db=req.db;
     const query=req.query;
@@ -23,6 +23,7 @@ driveDetails.get('/getYourDrives/:id',authenticateToken,async (req,res)=>{
             res.status(500).json({ message: 'Error fetching drives' });
         }
     } else {
+        console.log("unverified user:"+req.user.userid);
         res.status(401).json({ message: 'Unauthorized' });
     }
     }

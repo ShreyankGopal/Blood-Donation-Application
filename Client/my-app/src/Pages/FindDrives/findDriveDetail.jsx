@@ -16,7 +16,7 @@ function DriveDetail(){
         const { id } = useParams();
         const [response, setResponse] = useState([]);
         const [auth, setAuth] = useState(-1);
-    
+       
         useEffect(() => {
             api.get(`/getDriveDetail/${id}`)
                 .then((response) => {

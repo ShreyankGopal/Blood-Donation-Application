@@ -66,7 +66,13 @@ function LaunchDrives() {
         })
         .then((response) => {
             console.log(response.data);
-            setSubmit(0);
+            if(response.data=="spam"){
+                setSubmit(9)
+            }
+            else{
+                setSubmit(0);
+            }
+            
             // Replace with the route you want to navigate to after successful form submission
         })
         .catch((error) => {
@@ -148,7 +154,7 @@ function LaunchDrives() {
                 </div>
             </div>
         );
-    } else {
+    } else if(submit==0) {
         return (
             <div>
                 <TopNav />
@@ -161,6 +167,20 @@ function LaunchDrives() {
                 </div>
             </div>
         );
+    }
+    else if(submit==9){
+        return (
+            <div>
+                <TopNav />
+                <div className="div-container">
+                    <form>
+                        <div className="form-group">
+                            <h3>Your submission has been caught in spam 😕</h3>
+                        </div>
+                    </form>
+                </div>
+            </div>            
+        )
     }
 }
 

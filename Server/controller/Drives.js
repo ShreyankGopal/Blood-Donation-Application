@@ -1,12 +1,44 @@
-import express from 'express'
+import express, { response } from 'express'
 import authenticateToken from '../middlewares/tokenAuth.js';
-
+import axios from 'axios'
 const drives = express.Router();
 
 drives.post('/regDrive', authenticateToken, async (req, res) => {
     const {  title, description, bloodGroup, bank } = req.body;
     const db = req.db;
     const query = req.query;
+    async function testForSpam(description) {
+        const data = {
+            "checkForLength": true,
+            "content": description,
+            "allowedLanguages": ["en"]
+        };
+    
+        try {
+            const response = await axios.post(
+                "https://api.oopspam.com/v1/spamdetection",
+                data,
+                {
+                    headers: {
+                        "content-type": "application/json",
+                        "X-Api-Key": "0WPQEZXEtCst16kBRj6B3KAdhYYWENJzh508JOSM"
+                    }
+                }
+            );
+            
+            console.log(response.data);
+            console.log(response.data.Score);
+            
+            // Return -1 if the Score is greater than 3, otherwise return 0
+            return response.data.Score > 3 ? -1 : 0;
+            
+        } catch (error) {
+            console.error("Request failed:", error);
+            // Return -1 or another value to indicate an error if needed
+            return -1;
+        }
+    }
+    
     async function sendDriveEmail(userId, driveId) {
         try {
             const users = await query('SELECT email, fname FROM users WHERE id != ?', [userId]);
@@ -41,6 +73,8 @@ drives.post('/regDrive', authenticateToken, async (req, res) => {
         }
     }
     try {
+        if(await testForSpam(description)==0){
+            console.log("applied function for spam detection")
         if (req.user) {
             // Start a transaction
             const userId=req.user.userid;
@@ -69,6 +103,11 @@ drives.post('/regDrive', authenticateToken, async (req, res) => {
             sendDriveEmail(userId,driveId);
             res.status(201).json({ message: 'Drive registered successfully', driveId });
         }
+    }
+    else{
+        console.log("caught in spam")
+        res.send("spam")
+    }
 
     } catch (error) {
         // Rollback the transaction in case of an error

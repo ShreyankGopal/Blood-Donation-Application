@@ -30,7 +30,26 @@ import driveDetails from "./controller/fullFriveDetail.js";
 dotenv.config();
 
 const app=express()
-app.use(cors({credentials: true, origin: 'http://localhost:3000'}));
+const allowedOrigins = [
+  'http://localhost:3000',
+  'http://localhost:3001',
+  'http://localhost:4000'
+];
+
+app.use(cors({
+  credentials: true,
+  origin: function (origin, callback) {
+      if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+          callback(null, true);
+      } else {
+          callback(new Error('Not allowed by CORS'));
+      }
+  }
+}));
+
+
+
+
 app.use(cookieParser())
 var transport= {
   host: 'smtp.gmail.com',

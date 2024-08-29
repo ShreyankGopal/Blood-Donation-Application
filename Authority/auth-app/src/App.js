@@ -1,19 +1,16 @@
 import logo from './logo.svg';
 import './App.css';
-
+import { Routes, Route } from 'react-router-dom';
+import QRcodeScanner from './home';
+import ReactDOM from 'react-dom/client';
+import reportWebVitals from './reportWebVitals';
 function App() {
   return(
     <div>
-   
+      <Routes>
+        <Route path="/" element={<QRcodeScanner />}/>
 
-
-<nav aria-label="breadcrumb">
-  <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="/scan-reg">scan code</a></li>
-    <li class="breadcrumb-item"><a href="/verify-">verify id proof</a></li>
-    
-  </ol>
-</nav>
+      </Routes>
     </div>
   )
 }

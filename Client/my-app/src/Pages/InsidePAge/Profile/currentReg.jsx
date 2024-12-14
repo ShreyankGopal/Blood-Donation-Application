@@ -49,7 +49,7 @@ function CurrentReg(){
                         <p><span>City:</span> {item.city}</p>
                         <p><span>Age:</span> {item.age}</p>
                         <p><span>Branch:</span> {item.Name}</p>
-                        <img src={`https://api.qrserver.com/v1/create-qr-code/?data=branch:${item.Name} fname:${item.fname} lname:${item.lname} phone:${item.phone} email:${item.email} age:${item.age} branch:${item.branch}&amp;size=100x100`}/>
+                        <img src={`https://api.qrserver.com/v1/create-qr-code/?data=branchid:${item.bankid} userid:${item.userid}`}/>
                     </div>
                 ))}
             </div>

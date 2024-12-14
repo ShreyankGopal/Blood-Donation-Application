@@ -27,6 +27,8 @@ import banksToDonate from "./controller/banksToDonate.js";
 import findDrives from "./controller/findDrives.js";
 import yourDrives from "./controller/getYourDrives.js";
 import driveDetails from "./controller/fullFriveDetail.js";
+import qr from "./controller/QRScanAuth.js";
+import prevReg from "./controller/prevReg.js";
 dotenv.config();
 
 const app=express()
@@ -178,6 +180,8 @@ app.use("/",apply)
 app.use('/',drives);
 app.use('/',sendOTP)
 app.use('/',findDrives);
+app.use('/',qr);
+app.use('/',prevReg)
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);
 });

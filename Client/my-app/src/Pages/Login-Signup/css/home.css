@@ -1,56 +1,92 @@
 body, html {
-    height: 100%;
-    margin: 0;
-    font-family: Arial;
-  }
-  
-  /* Style tab links */
-  .tablink {
-    background-color: #555;
-    color: white;
-    float: left;
-    border: none;
-    outline: none;
-    cursor: pointer;
-    padding: 14px 16px;
-    font-size: 17px;
-    width: 25%;
-  }
-  
-  .tablink:hover {
-    background-color: #777;
-  }
-  
-  /* Style the tab content (and add height:100% for full page content) */
-  .tabcontent {
-    color: white;
-    display: none;
-    padding: 100px 20px;
-    height: 100%;
-  }
-  
-  #Home {background-color: red;}
-  #News {background-color: green;}
-  #Contact {background-color: blue;}
-  #About {background-color: orange;}
-.button-style{
-  position: absolute;
-  z-index: 0;
-  text-align: left;
-  width:10%;
-  height:5%;
-  
-  
-  
+  height: 100%;
+  margin: 0;
+  font-family: Arial, sans-serif;
 }
-.button-style button{
+
+/* Style tab links */
+.tablink {
+  background-color: #555;
+  color: white;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  font-size: 17px;
+  width: 25%; /* Default width for desktop */
+}
+
+.tablink:hover {
+  background-color: #777;
+}
+
+/* Style the tab content */
+.tabcontent {
+  color: white;
+  display: none;
+  padding: 100px 20px;
+  height: auto; /* Ensure content fits the screen */
+}
+
+#Home { background-color: red; }
+#News { background-color: green; }
+#Contact { background-color: blue; }
+#About { background-color: orange; }
+
+/* Style the button container */
+.button-style {
+  position: relative; /* Avoid overlapping */
+  z-index: 0;
+  text-align: center; /* Center align the buttons */
+  width: 100%; /* Full width for responsiveness */
+  margin-top: 10px; /* Add spacing */
+}
+
+.button-style button {
   background-color: #555;
   color: white;
   border: none;
-  width:fit-content;
-  height:fit-content;
-
+  padding: 10px 20px; /* Better padding for touchscreens */
+  margin: 5px; /* Add spacing between buttons */
+  font-size: 16px; /* Make text readable on smaller screens */
+  cursor: pointer;
 }
-.button-style button:hover{
+
+.button-style button:hover {
   background-color: #777;
+}
+
+/* Responsive layout for smaller screens */
+@media screen and (max-width: 768px) {
+  .tablink {
+    width: 100%; /* Stack tabs vertically */
+    font-size: 16px; /* Adjust font size */
+    padding: 12px;
+  }
+
+  .tabcontent {
+    padding: 50px 10px; /* Reduce padding for smaller screens */
+  }
+
+  .button-style {
+    text-align: center; /* Center buttons on smaller screens */
+  }
+
+  .button-style button {
+    width: 90%; /* Make buttons take most of the width */
+    font-size: 14px; /* Slightly smaller text */
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .tablink {
+    font-size: 14px; /* Further adjust font size for very small screens */
+    padding: 10px;
+  }
+
+  .button-style button {
+    font-size: 12px; /* Smaller text for compact layout */
+    padding: 8px;
+  }
 }

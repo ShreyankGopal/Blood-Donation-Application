@@ -52,11 +52,11 @@ function Profile() {
                 <div className="profile-container">
                     <div className="profile-image">
                         <div style={{ position: 'relative' }}>
-                        <img src={`${process.env.PUBLIC_URL}/images/anchor2.png`}></img>
+                        <img src={`${process.env.PUBLIC_URL}/logo192.png`}></img>
                             
                         </div>
                         <Link to={`/userid/${id}/currentReg`} className="plain-text-link">Current registration</Link>
-                        <Link to="/drives" className="plain-text-link">Prev registrations</Link>
+                        <Link to={`/userid/${id}/prevReg`} className="plain-text-link">Prev registrations</Link>
                         <Link to={`/userid/${id}/your-drives`} className="plain-text-link">Your drives</Link>
                         <Link to="/your-drives" className="plain-text-link">Your drives</Link>
                     </div>
@@ -81,3 +81,4 @@ function Profile() {
 }
 
 export default Profile;
+

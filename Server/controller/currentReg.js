@@ -10,7 +10,7 @@ currentReg.post('/userid/:id/currentReg',authenticateToken,async(req,res)=>{
         if(req.user && req.user.userid==id){
             console.log("u r in")
             console.log("currentReg")
-            const rows=await query(`select * from users u,BloodBank B,userReg uR where uR.userid=${id} and u.id=${id} and B.id=uR.bankid`);
+            const rows=await query(`select * from users u,BloodBank B,userReg uR where uR.userid=${id} and u.id=${id} and B.id=uR.bankid and uR.status=0`);
             
             
             

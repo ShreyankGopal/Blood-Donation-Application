@@ -52,7 +52,7 @@ drives.post('/regDrive', authenticateToken, async (req, res) => {
                     to: user.email,
                     subject: 'New Blood Donation Drive Launched',
                     html: `<p>Hello ${user.fname},</p>
-                           <p>Someone has launched a drive and is in need of blood. Please check it out.</p>
+                           <h4>Someone has launched a drive and is in need of blood. Please check it out.</h4>
                            <p>Title: ${title}</p>
                            <p>Description: ${description}</p>
                            <p>Blood Group: ${bloodGroup}</p>

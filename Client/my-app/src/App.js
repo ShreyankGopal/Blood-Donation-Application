@@ -17,6 +17,7 @@ import LaunchDrives from './Pages/InsidePAge/AplicationForDrives/LaunchDrives';
 import FindDrives from './Pages/FindDrives/findDrives';
 import YourDrives from './Pages/InsidePAge/Profile/YourDrives';
 import DriveDetail from './Pages/FindDrives/findDriveDetail';
+import PrevReg from './Pages/InsidePAge/Profile/prevReg';
 function App() {
   return (
     
@@ -37,6 +38,7 @@ function App() {
         <Route path="/userid/:id/find-drives" element={<FindDrives/>}/>
         <Route path="/userid/:id/your-drives" element={<YourDrives/>}/>
         <Route path="/full-drive-details/:id" element={<DriveDetail/>}/>
+        <Route path="/userid/:id/prevReg" element={<PrevReg/>}/>
       </Routes>
       </SearchProvider>
   

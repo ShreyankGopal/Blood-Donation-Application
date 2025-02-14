@@ -3,11 +3,11 @@
     display: flex;
     align-items: flex-start;
     flex-direction: row;
-    padding: 0px;
+    padding: 20px;
     height: 100vh;
-    opacity: 100%;
-    background-color: aliceblue;
+    background: linear-gradient(135deg, #f5f7fa, #c3cfe2); /* Gradient background */
     position: relative;
+    overflow: hidden;
 }
 
 /* Profile Image Section */
@@ -16,23 +16,27 @@
     display: flex;
     flex-direction: column;
     flex-shrink: 0;
-    margin-right: 20px;
+    margin-right: 40px;
     position: relative;
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Soft shadow */
 }
 
 .profile-image img {
     width: 200px;
     height: 200px;
     border-radius: 50%;
-    padding-left: 5px;
-    position: relative;
+    border: 5px solid #fff; /* White border */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Shadow for the image */
 }
 
 .plus-button {
     position: absolute;
-    bottom: 30px; /* Position it at the bottom */
-    right: 25px;  /* Position it at the right */
-    transform: translate(50%, 50%); /* Adjust to overlap the image */
+    bottom: 30px;
+    right: 25px;
+    transform: translate(50%, 50%);
     background-color: #b32d2d;
     color: white;
     border: none;
@@ -44,25 +48,29 @@
     justify-content: center;
     cursor: pointer;
     font-size: 20px;
+    transition: all 0.3s ease;
 }
 
 .plus-button:hover {
-    background-color: grey;
+    background-color: #ff6b6b; /* Lighter red on hover */
+    transform: translate(50%, 50%) scale(1.1); /* Slight zoom effect */
 }
 
 /* Links */
 .plain-text-link {
-    color: black;
+    color: #333;
     text-decoration: none;
-    opacity: 80%; 
+    opacity: 80%;
     margin-top: 10px;
+    font-size: 16px;
+    transition: all 0.3s ease;
 }
 
 .plain-text-link:hover {
-    transform: translate(-2px);
-    font-size: large;
+    transform: translateX(-5px); /* Move text slightly to the left */
+    font-size: 18px;
     text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    color: black;
+    color: #b32d2d; /* Red color on hover */
     opacity: 100%;
 }
 
@@ -70,8 +78,8 @@
 .vertical-line {
     width: 2px;
     height: 100%;
-    background-color: black;
-    margin-right: 20px;
+    background-color: rgba(0, 0, 0, 0.1); /* Lighter line */
+    margin-right: 40px;
     margin-bottom: 20px;
 }
 
@@ -79,88 +87,97 @@
 .profile-details {
     flex-grow: 1;
     text-align: left;
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Soft shadow */
+}
+
+.profile-details h2 {
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 10px;
 }
 
 .profile-details p {
-    opacity: 60%;
+    opacity: 80%;
+    font-size: 18px;
+    color: #555;
+    margin: 10px 0;
 }
 
 .profile-details p span {
     opacity: 90%;
-    font-weight: bolder;
+    font-weight: bold;
+    color: #333;
 }
 
-/* Picture Section */
-.picture {
-    width: 50%;
-    height: auto;
-}
-
-.picture img {
-    width: 50%;
-    height: auto;
-    border-radius: 8px;
-}
-
-.picture h3 {
-    display: flex;
-    padding-top: 20%;
-    z-index: 1;
+/* Background Pattern */
+.profile-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('https://www.transparenttextures.com/patterns/always-grey.png'); /* Subtle pattern */
+    opacity: 0.1;
+    z-index: -1;
 }
 
 /* Media Queries for Responsive Design */
 @media screen and (max-width: 768px) {
     .profile-container {
-        flex-direction: column; /* Stack the profile image and details vertically */
-        align-items: center; /* Center align the items */
-        height: auto; /* Let the height adjust based on content */
+        flex-direction: column;
+        align-items: center;
+        height: auto;
         padding: 10px;
     }
 
     .profile-image {
-        margin-bottom: 20px; /* Add spacing below the image section */
+        margin-bottom: 20px;
     }
 
     .profile-image img {
-        width: 150px; /* Reduce image size */
+        width: 150px;
         height: 150px;
     }
 
     .plus-button {
-        bottom: 10px; /* Adjust positioning for smaller screens */
+        bottom: 10px;
         right: 10px;
     }
 
     .vertical-line {
-        display: none; /* Hide the vertical line on smaller screens */
+        display: none;
     }
 
     .profile-details {
-        text-align: center; /* Center align text for smaller screens */
+        text-align: center;
     }
 
     .profile-details p {
-        font-size: 16px; /* Adjust font size for readability */
+        font-size: 16px;
     }
 }
 
 @media screen and (max-width: 480px) {
     .profile-container {
-        padding: 5px; /* Reduce padding for smaller devices */
+        padding: 5px;
     }
 
     .profile-image img {
-        width: 120px; /* Further reduce image size */
+        width: 120px;
         height: 120px;
     }
 
     .plus-button {
-        width: 30px; /* Reduce button size */
+        width: 30px;
         height: 30px;
         font-size: 16px;
     }
 
     .profile-details p {
-        font-size: 14px; /* Smaller font for extra-small screens */
+        font-size: 14px;
     }
 }

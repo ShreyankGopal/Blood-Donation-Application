@@ -1,34 +1,129 @@
-.container-background {
-    background-color: aliceblue;
-    overflow-y: auto;
-    max-height: calc(100vh - 80px); /* Adjust as needed to fit your layout */
-    padding: 20px;
-}
-
-.applyButton {
-    border-radius: 12px;
-    color: white;
-    background-color: #b32d2d;
-}
-
-.applyButton:hover {
-    background-color: black;
-}
-
-.cardtext2 {
-    opacity: 60%;
-    font-style: oblique;
-}
-
+/* Card Container */
 .card {
-    transition: transform 0.2s, box-shadow 0.2s;
-    margin: 10px;
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    background: white;
+    border: none;
+    border-radius: 16px;
+    padding: 1.5rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    margin-bottom: 1.5rem;
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: #b32d2d;
+    transform: scaleY(0);
+    transition: transform 0.3s ease;
 }
 
 .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(179, 45, 45, 0.15);
+}
+
+.card:hover::before {
+    transform: scaleY(1);
+}
+
+/* Card Content */
+.card-content {
+    padding-right: 80px; /* Space for distance badge */
+}
+
+.card-title {
+    color: #2c3e50;
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    line-height: 1.3;
+}
+
+.card-text {
+    color: #4a5568;
+    font-size: 1rem;
+    line-height: 1.5;
+    margin-bottom: 0.5rem;
+}
+
+/* Distance Badge */
+.distance-badge {
+    position: absolute;
+    top: 1.25rem;
+    right: 1.25rem;
+    background: rgba(179, 45, 45, 0.1);
+    color: #b32d2d;
+    padding: 0.4rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+/* Apply Button */
+.applyButton {
+    background-color: #b32d2d;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    padding: 0.8rem 1.5rem;
+    font-weight: 500;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.applyButton:hover {
+    background-color: #8c2323;
     transform: translateY(-2px);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 12px rgba(179, 45, 45, 0.2);
+}
+
+.applyButton:active {
+    transform: translateY(0);
+}
+
+/* Animation for card entrance */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.card {
+    animation: fadeInUp 0.5s ease-out forwards;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .card {
+        margin: 1rem 0;
+    }
+    
+    .card-content {
+        padding-right: 0;
+    }
+    
+    .distance-badge {
+        position: static;
+        display: inline-block;
+        margin-bottom: 1rem;
+    }
 }

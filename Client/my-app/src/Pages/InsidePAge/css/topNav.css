@@ -1,16 +1,21 @@
 .navbar {
   width: 100%;
   background-color: #b32d2d;
-  z-index: 1;
+  z-index: 1000; /* Ensures the navbar stays above other elements */
   display: flex;
   flex-wrap: wrap; /* Allows items to wrap on smaller screens */
   justify-content: space-between; /* Distributes items evenly */
   align-items: center; /* Centers items vertically */
   padding: 10px;
+ /* Keeps the navbar fixed at the top */
+  top: 0; /* Positions the navbar at the very top */
+  left: 0;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Adds a slight shadow for better visibility */
 }
 
 /* Navbar links */
 .navbar a {
+  
   color: white;
   text-decoration: none;
   font-size: 17px;
@@ -18,6 +23,7 @@
   flex: 1; /* Ensures items adjust evenly */
   text-align: center;
   margin: 5px; /* Adds spacing around items */
+  max-width: 4cm;
 }
 
 /* Navbar links on hover */
@@ -39,6 +45,7 @@
   border-radius: 5px;
   margin: 5px; /* Adds spacing around */
 }
+
 
 /* Dropdown container */
 #search-cards {
@@ -67,6 +74,7 @@
 }
 
 /* Responsive design for small screens */
+
 @media screen and (max-width: 500px) {
   .navbar {
       flex-direction: column; /* Stacks items vertically */

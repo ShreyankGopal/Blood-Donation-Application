@@ -18,6 +18,8 @@ import FindDrives from './Pages/FindDrives/findDrives';
 import YourDrives from './Pages/InsidePAge/Profile/YourDrives';
 import DriveDetail from './Pages/FindDrives/findDriveDetail';
 import PrevReg from './Pages/InsidePAge/Profile/prevReg';
+import Home2 from './Pages/InsidePAge/home2';
+import ResetPassword from './Pages/Login-Signup/ResetPass';
 function App() {
   return (
     
@@ -27,7 +29,7 @@ function App() {
       <Route path="/" element={<Home />}/>
         <Route path="/login" element={<Login />}/>
         <Route path="/signup" element={<Signup />}/>
-        <Route path="/userid/:id/home" element={<TopNav />}/>
+        <Route path="/userid/:id/home" element={<Home2 />}/>
         <Route path="/userid/:id/profile" element={<Profile />}/>
         <Route path="/userid/:id/currentReg" element={< CurrentReg/>}/>
         <Route path="/userid/:id/apply" element={<ApplyDonor/>}/>
@@ -39,6 +41,7 @@ function App() {
         <Route path="/userid/:id/your-drives" element={<YourDrives/>}/>
         <Route path="/full-drive-details/:id" element={<DriveDetail/>}/>
         <Route path="/userid/:id/prevReg" element={<PrevReg/>}/>
+        <Route path="/resetPassword" element={<ResetPassword/>}/>
       </Routes>
       </SearchProvider>
   

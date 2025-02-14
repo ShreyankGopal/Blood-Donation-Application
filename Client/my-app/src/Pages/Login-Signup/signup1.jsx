@@ -9,7 +9,7 @@ import Images from "./introImage";
 import OTP from "./OTPformatmail";
 import ReactDOMServer from 'react-dom/server';
 import './css/OTP.css'
-
+import api from "../../API/api";
 function Signup() {
     const apiUrl = process.env.REACT_APP_API_URL;
     
@@ -29,6 +29,7 @@ function Signup() {
     const [otp,setOtp]=useState(1111);
     const [inputOTP,setInputOtp]=useState();
     const[timer,setTimer]=useState(120)
+    const[checked,setChecked]=useState(0);
     //const [lname, setLname] = useState('');
     useEffect(() => {
         let countdown;
@@ -76,7 +77,7 @@ function Signup() {
             const messageHtml = ReactDOMServer.renderToStaticMarkup(
                 <OTP otp={newOtp}></OTP>
             );
-            axios.post('http://localhost:5001/sendOTP',{messageHtml:messageHtml,email:email})
+            api.post('/sendOTP',{messageHtml:messageHtml,email:email})
             .then((response)=>{
                 console.log(response.data)
                 
@@ -125,7 +126,7 @@ function Signup() {
             const messageHtml = ReactDOMServer.renderToStaticMarkup(
                 <OTP otp={newOtp}></OTP>
             );
-            axios.post('http://localhost:5001/sendOTP',{messageHtml:messageHtml,email:email})
+            api.post('/sendOTP',{messageHtml:messageHtml,email:email})
             .then((response)=>{
                 console.log(response.data)
                 
@@ -139,8 +140,14 @@ function Signup() {
 
     }
     function handleSubmit3(e){
-        if(submission==0){
-            return;
+        // if(submission==0){
+        //     return;
+        // }
+        const isCheckboxChecked = document.getElementById("confirmation-checkbox").checked;
+
+        if (!isCheckboxChecked) {
+            window.alert("Please confirm that your info is correct by checking the box.");
+            return; // Stop submission if the checkbox is not checked
         }
         e.preventDefault();
         const formData = new FormData();
@@ -152,14 +159,9 @@ function Signup() {
         formData.append("email", email);
         formData.append("pincode", pincode);
         formData.append("password", password);
-        formData.append("file", selectedFile);
+        // formData.append("file", selectedFile);
         console.log(formData)
-        axios.post('http://localhost:5001/signup',formData,{
-            headers:{
-                "Content-Type":"multipart/form-data"
-            },
-            withCredentials:true
-        })
+        api.post('/signup',formData)
         .then((response)=>{
             console.log("DONE")
             console.log(response);
@@ -331,24 +333,26 @@ function Signup() {
     }
     else if(stage==3){
         return (
-            <div>
-                <Slideshow />
-            <div className="table-container">
-                <form className="form" onSubmit={handleSubmit3}>
-                    
-                        <label htmlFor="Email">Upload a valid ID(Pan/Aadhar/Driving licence) PDF format only</label><br />
-                        <input type="file" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" onChange={handleFileChange} aria-label="Upload"/><br />
-                        
-                        
-                        
-                        
-                    
-                    <button  id="back-button2" onClick={()=>setStage(2)}>←</button>
-                   
-                    <button type="submit" id="submit-button">submit</button>
-                </form>
-            </div>
-            </div>
+<div>
+    <Slideshow />
+    <div className="table-container">
+        <form className="form" onSubmit={handleSubmit3}>
+            <label htmlFor="confirmation-checkbox">
+                <input
+                    type="checkbox"
+                    id="confirmation-checkbox"
+                    name="confirmation-checkbox"
+                    required // This makes the checkbox mandatory
+                />
+                I confirm that my info is correct and I am ready to submit this info <span style={{ color: "red" }}>*</span>
+            </label>
+            <br />
+            
+            <button id="back-button2" onClick={() => setStage(2)}>←</button>
+            <button type="submit" id="submit-button">Submit</button>
+        </form>
+    </div>
+</div>
         )
     }
 }

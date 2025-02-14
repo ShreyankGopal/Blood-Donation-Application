@@ -83,20 +83,89 @@ function Application() {
         )}
     else if(auth==0 && stage==1){
         return(
-            <div>
-                
-                <h3>Thank You for Registering. You can view the details in your profile. Show the QR code at the centre</h3>
+            <div className="success-container">
+                <div className="success-card">
+                <div className="success-icon"></div>
+                <h2 className="success-title">Registration Successful!</h2>
+                <p className="success-message">
+                    Thank you for registering. You can view your details in your profile.
+                 </p>
+                <div className="qr-container">
+                    {/* Your QR code component goes here */}
+                </div>
+                </div>
             </div>
         )
 
     }
      else if(auth === 1 ) {
         return (
-            <div className="full-container">
-               
-            
-            <h3>You have already registered for this!</h3>
+<div style={{
+    minHeight: '100vh',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    background: 'linear-gradient(135deg, #fff5f5 0%, #ffe3e3 100%)',
+    padding: '2rem'
+}}>
+    <div style={{
+        background: 'white',
+        padding: '2.5rem',
+        borderRadius: '12px',
+        boxShadow: '0 8px 24px rgba(0, 0, 0, 0.1)',
+        textAlign: 'center',
+        maxWidth: '500px',
+        width: '90%',
+        animation: 'slideIn 0.5s ease-out',
+        position: 'relative'
+    }}>
+        <div style={{
+            width: '64px',
+            height: '64px',
+            background: '#ff4d4f',
+            borderRadius: '50%',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            margin: '0 auto 1.5rem',
+            color: 'white',
+            fontSize: '32px'
+        }}>
+            !
         </div>
+        <h3 style={{
+            color: '#2c3e50',
+            fontSize: '1.5rem',
+            margin: '0 0 1rem 0',
+            fontWeight: '600',
+            fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
+        }}>
+            You have already registered for this!
+        </h3>
+        <p style={{
+            color: '#666',
+            fontSize: '1.1rem',
+            lineHeight: '1.5',
+            margin: '0'
+        }}>
+            Please check your profile to view your registration details.
+        </p>
+    </div>
+    <style>
+        {`
+            @keyframes slideIn {
+                from {
+                    opacity: 0;
+                    transform: translateY(-20px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+        `}
+    </style>
+</div>
         );
     } else {
         return <h2>You are not authorised</h2>;

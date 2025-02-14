@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import './css/topNav.css'
 import NavBar from "./sidNavBar";
-import { useEffect } from "react";
+import { useEffect , useRef} from "react";
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
@@ -18,6 +18,7 @@ const [search,setSearch]=useState('')
 const [results,setResult]=useState([])
 const [displayDropdown, setDisplayDropdown] = useState(false);
 const {setSearchResult } = useContext(SearchContext);
+const contactRef = useRef(null);
 const navigate=useNavigate()
 const closeDropdown = () => {
   setDisplayDropdown(false);
@@ -35,6 +36,14 @@ function handlClick(bid){
   
   
 }
+
+
+  // Function to scroll to the element
+  const scrollToContact = () => {
+    if (contactRef.current) {
+      contactRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 function handleSearchChange(e){
   console.log(displayDropdown)
   setDisplayDropdown(true)
@@ -100,7 +109,7 @@ useEffect(()=>{
                 <NavBar id={id}/>
                 <a className="active" href={`/userid/${id}/home`}><i className="fa fa-fw fa-home"></i> Home</a>
                 
-                <a href="#"><i className="fa fa-fw fa-envelope"></i> Contact</a>
+                <a  href={`/userid/${id}/home`} onClick={scrollToContact}><i className="fa fa-fw fa-envelope"></i> Contact</a>
                 <div>
                   <input  className="search" type="text" placeholder="Search centers" value={search} onChange={(e)=>handleSearchChange(e)} onClick={()=>setDisplayDropdown(true)} />
                 

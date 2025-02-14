@@ -36,7 +36,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-signuprouter.post('/signup', upload.single('file'), async (req, res) => {
+signuprouter.post('/signup', upload.none(),async (req, res) => {
     let jwtSecretKey = process.env.JWT_SECRET_KEY;
     
     const result = req.body;

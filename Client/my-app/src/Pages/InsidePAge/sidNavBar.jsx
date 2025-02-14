@@ -19,7 +19,7 @@ function NavBar(props) {
                 <a href={`/userid/${props.id}/Drives`}>Launch drives</a>
                 <a href={`/userid/${props.id}/find-drives`}>Find drives</a>
                 <a href={`/userid/${props.id}/apply`}>Apply as Donor</a>
-                <a href="#">Contact</a>
+                
             </div>
             <span style={{ fontSize: "30px", cursor: "pointer" }} onClick={openNav}>&#9776;</span>
         </div>

@@ -18,7 +18,17 @@ applicationRoute.post('/userid/:id/apply/bankid/:bankid/application',authenticat
             const userRegRow=await query(`select * from userReg where userid=${id} and bankid=${bankid}`)
             console.log(userRegRow.length);
             if(userRegRow.length>0){
-                res.send("applied");
+                if(row.status==0){
+                    res.send("applied");
+                }
+                else{
+                    const rows=await query(`select Name from BloodBank where id=${bankid}`)
+                    const userdata=await query(`select * from users where id=${id}`)
+                    
+                    const data=[rows[0],userdata[0]];
+                    res.send(data); 
+                }
+                
                 
             }
             else{

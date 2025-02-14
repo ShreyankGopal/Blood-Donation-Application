@@ -29,6 +29,8 @@ import yourDrives from "./controller/getYourDrives.js";
 import driveDetails from "./controller/fullFriveDetail.js";
 import qr from "./controller/QRScanAuth.js";
 import prevReg from "./controller/prevReg.js";
+import Resetrouter from "./auth/passwordReset.js";
+import PassResetRouter from "./auth/passReset.js";
 dotenv.config();
 
 const app=express()
@@ -136,7 +138,7 @@ app.post('/sendApplicationEmail',async(req,res)=>{
         html: message
       }
       try{
-        await query(`insert into userReg values(${id},${bankid})`);
+        await query(`insert into userReg values(${id},${bankid},0)`);
       
       transporter.sendMail(mail, (err, data) => {
         if (err) {
@@ -152,6 +154,7 @@ app.post('/sendApplicationEmail',async(req,res)=>{
       })
     }
     catch(error){
+      console.log(error)
       console.log("failed to register")
     }
 })
@@ -182,6 +185,8 @@ app.use('/',sendOTP)
 app.use('/',findDrives);
 app.use('/',qr);
 app.use('/',prevReg)
+app.use('/',Resetrouter)
+app.use('/',PassResetRouter)
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);
 });
